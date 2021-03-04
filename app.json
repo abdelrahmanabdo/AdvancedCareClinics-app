@@ -1,12 +1,11 @@
 {
   "expo": {
-    "name": "medical",
-    "slug": "medical",
+    "name": "A.C.C",
+    "slug": "A.C.C",
     "privacy": "public",
     "platforms": [
       "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -26,7 +25,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.medical.app"
+      "package": "com.acc.app"
     }
   }
 }

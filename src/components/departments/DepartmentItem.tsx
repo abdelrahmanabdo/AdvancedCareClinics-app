@@ -13,18 +13,17 @@ export const DepartmentItem: React.FC<TProps> = props => {
   return (
     <View style={[styles.container, props.style]}>
       <Image
-        source={{
-          uri: props.item.imageUrl
-        }}
+        source={props.item.Img ? {uri: props.item.Img } : require('../../../assets/logo-black.png')}
         style={styles.image}
+        resizeMode="contain"
       />
       <View style={styles.textContainer}>
         <Text style={styles.title} numberOfLines={2}>
-          {props.item.title}
+          {props.item.NameAr}
         </Text>
         {props.showShortDesc && (
           <Text style={styles.shortDesc} numberOfLines={2}>
-            {props.item.shortDescription}
+            {props.item.ShortDescription}
           </Text>
         )}
       </View>
@@ -49,9 +48,9 @@ const styles = StyleSheet.create({
     }
   },
   image: {
-    height: 84,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16
+    height: 74,
+    width: 74,
+    alignSelf:'center',
   },
   textContainer: {
     padding: 12,
@@ -60,7 +59,8 @@ const styles = StyleSheet.create({
   title: {
     color: Theme.colors.black,
     fontWeight: "600",
-    fontSize: 14
+    fontSize: 14,
+    textAlign: "center"
   },
   shortDesc: {
     color: Theme.colors.gray,

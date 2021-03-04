@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FlatList, View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Divider, TouchableHighlight } from "../../components";
@@ -7,42 +7,38 @@ import { useLocalization } from "../../localization";
 import { SettingsBottomSheet } from "../../modals";
 import NavigationNames from "../../navigations/NavigationNames";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const getMenuItems = (getString: (key: string) => string) => [
   {
-    title: getString("Events"),
-    iconName: "ios-musical-notes",
-    navigateToScreen: NavigationNames.EventListScreen
-  },
-  {
-    title: getString("Blog"),
-    iconName: "ios-paper"
-  },
-  {
-    title: getString("Youtube"),
-    iconName: "logo-youtube"
-  },
-  {
-    title: getString("Instagram"),
-    iconName: "logo-instagram"
-  },
-  {
     title: getString("About Us"),
-    iconName: "ios-business"
+    iconName: "ios-business",
   },
   {
     title: getString("Contact Us"),
-    iconName: "ios-call"
+    iconName: "ios-call",
   },
-  {
-    title: getString("Write to Us"),
-    iconName: "ios-chatbubbles"
-  },
+  // {
+  //   title: getString("Write to Us"),
+  //   iconName: "ios-chatbubbles"
+  // },
   {
     title: getString("Settings"),
     iconName: "md-settings",
-    openSettings: true
-  }
+    openSettings: true,
+  },
+  {
+    title: getString("Login"),
+    iconName: "md-person",
+    navigateToScreen: NavigationNames.LoginScreen,
+    requireAuth: false
+  },
+  {
+    title: getString("Logout"),
+    iconName: "md-person",
+    navigateToScreen: NavigationNames.LoginScreen,
+    requireAuth: true
+  },
 ];
 
 type TProps = {};
@@ -50,7 +46,7 @@ type TProps = {};
 export const MenuScreen: React.FC<TProps> = props => {
   const navigation = useNavigation();
   const { getString } = useLocalization();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isVisibleSettingModal, setIsVisibleSettingModal] = useState(false);
   const menuItems = getMenuItems(getString);
 
@@ -62,13 +58,23 @@ export const MenuScreen: React.FC<TProps> = props => {
     }
   };
 
+  const getUser = async () =>  {
+    return JSON.parse(await AsyncStorage.getItem('user')) 
+      ? setIsLoggedIn(true)
+      : setIsLoggedIn(false)
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <>
       <FlatList
         data={menuItems}
         keyExtractor={(item, index) => `key${index}ForMenu`}
         renderItem={({ item }) => (
-          <TouchableHighlight onPress={() => onPressMenuItemClick(item)}>
+         <TouchableHighlight onPress={() => onPressMenuItemClick(item)}>
             <View style={styles.itemContainer}>
               <View style={styles.iconContainer}>
                 <Ionicons

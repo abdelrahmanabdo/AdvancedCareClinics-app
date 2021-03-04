@@ -20,7 +20,7 @@ type TProps = {
 export const Avatar: React.FC<TProps> = props => {
   return (
     <View style={[styles.container, props.style]}>
-      <Image source={props.source} style={[styles.image, props.imageStyle]} />
+      <Image source={props.source} style={[styles.image, props.imageStyle]} resizeMode="center" />
       {props.status && (
         <View
           style={[

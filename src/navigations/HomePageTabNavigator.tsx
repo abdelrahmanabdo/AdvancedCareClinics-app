@@ -7,10 +7,11 @@ import { useLocalization } from "../localization";
 import { stackScreenOptions, tabScreenOptions } from "./NavigationHelper";
 import {
   HomeScreen,
+  LoginScreen,
+  RegisterScreen,
   ProfileScreen,
   MenuScreen,
   CalendarScreen,
-  MediaScreen,
   CampaignListScreen,
   CampaignDetailScreen,
   DepartmentListScreen,
@@ -93,24 +94,6 @@ const CalendarTabStack = () => {
   );
 };
 
-const MediaTabStack = () => {
-  const { getString } = useLocalization();
-  return (
-    <Stack.Navigator headerMode="screen" screenOptions={stackScreenOptions}>
-      <Stack.Screen
-        name={NavigationNames.MediaScreen}
-        component={MediaScreen}
-        options={{ title: getString("Media") }}
-      />
-      <Stack.Screen
-        name={NavigationNames.MediaDetailScreen}
-        component={MediaDetailScreen}
-        options={{ title: getString("Media") }}
-      />
-    </Stack.Navigator>
-  );
-};
-
 const ProfileTabStack = () => {
   return (
     <Stack.Navigator headerMode="screen" screenOptions={stackScreenOptions}>
@@ -137,6 +120,16 @@ const MenuTabStack = () => {
         component={EventListScreen}
         options={{ title: getString("Events") }}
       />
+      <Stack.Screen
+        name={NavigationNames.LoginScreen}
+        options={{ title: getString('Login') }}
+        component={LoginScreen}
+      />
+      <Stack.Screen
+        name={NavigationNames.RegisterScreen}
+        options={{ title: getString('Register') }}
+        component={RegisterScreen}
+      />
     </Stack.Navigator>
   );
 };
@@ -154,7 +147,6 @@ const HomePageTabNavigator = () => (
       name={NavigationNames.CalendarTab}
       component={CalendarTabStack}
     />
-    <Tab.Screen name={NavigationNames.MediaTab} component={MediaTabStack} />
     <Tab.Screen name={NavigationNames.ProfileTab} component={ProfileTabStack} />
     <Tab.Screen name={NavigationNames.MenuTab} component={MenuTabStack} />
   </Tab.Navigator>

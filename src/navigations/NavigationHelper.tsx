@@ -13,8 +13,6 @@ const getTabTitle = (routeName: string): string => {
     return getString("Home");
   } else if (routeName === NavigationNames.CalendarTab) {
     return getString("Calendar");
-  } else if (routeName === NavigationNames.MediaTab) {
-    return getString("Media");
   } else if (routeName === NavigationNames.ProfileTab) {
     return getString("Profile");
   } else if (routeName === NavigationNames.MenuTab) {
@@ -36,9 +34,6 @@ export const tabScreenOptions: (props: {
         break;
       case NavigationNames.CalendarTab:
         iconName = "ios-calendar";
-        break;
-      case NavigationNames.MediaTab:
-        iconName = "ios-videocam";
         break;
       case NavigationNames.ProfileTab:
         iconName = "md-person";

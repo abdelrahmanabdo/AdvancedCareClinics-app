@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomePageTabNavigator from "./HomePageTabNavigator";
 import NavigationNames from "./NavigationNames";
 import { useLocalization } from "../localization";
+import Toast from "react-native-toast-message";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,7 @@ export default function() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name={"Root"} component={HomePageTabNavigator} />
       </Stack.Navigator>
+      <Toast ref={(ref) => Toast.setRef(ref)} />
     </NavigationContainer>
   );
 }

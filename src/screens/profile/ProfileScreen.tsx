@@ -1,14 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Avatar, Divider, TouchableHighlight } from "../../components";
 import { Theme } from "../../theme";
 import { useLocalization } from "../../localization";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type TProps = {};
 
 export const ProfileScreen: React.FC<TProps> = props => {
   const { getString } = useLocalization();
+  const [user, setUser] = useState(null);
+
+  const getUser = async () => {
+    const user =  JSON.parse(await AsyncStorage.getItem('user'))
+    setUser(user);
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <SafeAreaView style={styles.flex1}>
       <ScrollView
@@ -17,13 +29,10 @@ export const ProfileScreen: React.FC<TProps> = props => {
       >
         <Avatar
           imageStyle={styles.imageStyle}
-          source={{
-            uri:
-              "https://raw.githubusercontent.com/publsoft/publsoft.github.io/master/projects/dentist-demo/assets/images/profile_photo.png"
-          }}
+          source={require('../../../assets/patient.png')}
         />
-        <Text style={styles.nameText}>Büşra Mutlu</Text>
-        <Text style={styles.daysText}>13. days</Text>
+        <Text style={styles.nameText}>{user?.NameAr}</Text>
+        <Text style={styles.daysText}>{user?.Phone1}</Text>
 
         <View style={{ marginTop: 24 }}>
           {[
@@ -39,24 +48,18 @@ export const ProfileScreen: React.FC<TProps> = props => {
               iconName: "md-calendar",
               iconColor: "#2D9CDB"
             },
-            {
-              title: getString("Medical"),
-              subtitle: getString("Programs"),
-              iconName: "ios-medkit",
-              iconColor: "#27AE60"
-            },
-            {
-              title: getString("Notifications"),
-              subtitle: getString("Show All Notifications"),
-              iconName: "md-notifications",
-              iconColor: "#F2994A"
-            },
-            {
-              title: getString("Favorite Videos"),
-              subtitle: getString("Saved Videos"),
-              iconName: "ios-heart",
-              iconColor: "#EB5757"
-            }
+            // {
+            //   title: getString("Medical"),
+            //   subtitle: getString("Programs"),
+            //   iconName: "ios-medkit",
+            //   iconColor: "#27AE60"
+            // },
+            // {
+            //   title: getString("Notifications"),
+            //   subtitle: getString("Show All Notifications"),
+            //   iconName: "md-notifications",
+            //   iconColor: "#F2994A"
+            // }
           ].map((item, index) => {
             return (
               <TouchableHighlight key={index} onPress={() => {}}>

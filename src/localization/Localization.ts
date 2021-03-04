@@ -9,18 +9,18 @@ const I18N_NAME_SPACE = "translation";
 
 i18n.use(initReactI18next).init({
   resources: {},
-  lng: "en",
-  fallbackLng: "en",
+  lng: "ar",
+  fallbackLng: "ar",
   ns: I18N_NAME_SPACE,
   interpolation: {
     escapeValue: false
   }
 });
 
-moment.locale("en");
+moment.locale("ar");
 
 i18n.addResources("en", I18N_NAME_SPACE, require("./locales/en.json"));
-i18n.addResources("tr", I18N_NAME_SPACE, require("./locales/tr.json"));
+i18n.addResources("ar", I18N_NAME_SPACE, require("./locales/ar.json"));
 
 export const useLocalization = () => {
   const { t, i18n } = useTranslation();

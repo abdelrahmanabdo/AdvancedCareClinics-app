@@ -19,6 +19,7 @@ export const Button: React.FC<TProps> = props => {
         props.type === "outline" && styles.outlineContainer
       ]}
       onPress={props.onPress}
+      activeOpacity={.65}
     >
       <Text
         style={[

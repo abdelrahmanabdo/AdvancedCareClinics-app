@@ -6,6 +6,13 @@
   "Menu": "Menu",
   "Doctors": "Doctors",
 
+    "Logout": "Logout",
+  "DonnotHaveAccount": "Don't have an account ? ",
+  "Register": "Register",
+  "insertMobile": "Please Insert Your Mobile",
+  "insertPassword":"Please Insert Your Password",
+  "insertName":"Please Insert Your Name",
+  "insertEmail":"Please Insert Your Email",
   "View Full Profile": "View Full Profile",
   "Latest reviews": "Latest reviews",
   "Last": "Last",

@@ -25,15 +25,15 @@ export const DoctorItemRow: React.FC<TProps> = props => {
       <View style={[styles.container, props.style]}>
         <Avatar
           status={props.item.isOnline ? "online" : null}
-          source={{
-            uri: props.item.imageUrl
-          }}
+          source={props.item.DoctorImg 
+                  ? {uri: `data:image/png;base64,${props.item.DoctorImg}`} 
+                  : require('../../../assets/doctor.png')}
           style={styles.avatar}
         />
         <View style={styles.textContent}>
-          <Text style={styles.doctorNameText}>{props.item.fullName}</Text>
-          <Text style={styles.doctorTitleText}>{props.item.title}</Text>
-          <View style={{ alignSelf: "flex-start", marginTop: 2 }}>
+          <Text style={styles.doctorNameText}>{props.item.DoctorName}</Text>
+          <Text style={styles.doctorTitleText}>{props.item.Specialty_NameAr}</Text>
+          {/* <View style={{ alignSelf: "flex-start", marginTop: 2 }}>
             <AirbnbRating
               showRating={false}
               count={5}
@@ -41,8 +41,8 @@ export const DoctorItemRow: React.FC<TProps> = props => {
               isDisabled
               selectedColor={"orange"}
               defaultRating={props.item.rating}
-            />
-          </View>
+            /> 
+          </View> */}
         </View>
         <TouchableOpacity
           style={styles.moreButton}
@@ -50,16 +50,16 @@ export const DoctorItemRow: React.FC<TProps> = props => {
         >
           <Ionicons
             size={24}
-            name="md-more"
+            name="ios-arrow-forward"
             color={Theme.colors.grayForItemsMore}
           />
         </TouchableOpacity>
       </View>
-      <DoctorDetailsBottomSheet
+      {/* <DoctorDetailsBottomSheet
         doctor={props.item}
         isVisible={visibleModal}
         onDismissModal={() => setVisibleModal(false)}
-      />
+      /> */}
     </>
   );
 };

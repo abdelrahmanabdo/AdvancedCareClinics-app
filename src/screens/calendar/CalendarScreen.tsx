@@ -65,8 +65,8 @@ export const CalendarScreen: React.FC<{}> = props => {
         }}
         onDayChange={day => {}}
         selected={selectedDate}
-        pastScrollRange={25}
-        futureScrollRange={25}
+        pastScrollRange={3}
+        futureScrollRange={3}
         rowHasChanged={(r1, r2) => {
           return true;
         }}

@@ -105,7 +105,7 @@ export const DepartmentDetailScreen: React.FC<TProps> = props => {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.scrollImageList}
           >
-            <View style={styles.viewContentImageList}>
+            {/* <View style={styles.viewContentImageList}>
               {model.images.map((item, index) => {
                 return (
                   <TouchableOpacity
@@ -126,7 +126,7 @@ export const DepartmentDetailScreen: React.FC<TProps> = props => {
                   </TouchableOpacity>
                 );
               })}
-            </View>
+            </View> */}
           </ScrollView>
         </View>
       </ScrollView>

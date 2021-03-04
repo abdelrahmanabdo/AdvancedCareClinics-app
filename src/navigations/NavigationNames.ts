@@ -1,9 +1,11 @@
 export default {
   HomeScreen: "HomeScreen",
+  LoginScreen: "LoginScreen",
+  RegisterScreen: "RegisterScreen",
+
   //Tabs
   HomeTab: "HomeTab",
   CalendarTab: "CalendarTab",
-  MediaTab: "MediaTab",
   ProfileTab: "ProfileTab",
   MenuTab: "MenuTab",
 

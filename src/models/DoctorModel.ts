@@ -1,11 +1,7 @@
-import { ReviewModel } from "./ReviewModel";
-
 export type DoctorModel = {
-  fullName: string;
-  title: string;
-  imageUrl: string;
-  about: string;
-  isOnline: boolean;
-  rating: number;
-  reviews: ReviewModel[];
+  ID: number;
+  DoctorName: string;
+  Specialty_ID: number;
+  Specialty_NameAr: string,
+  DoctorImg: string;
 };

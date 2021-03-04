@@ -1,6 +1,7 @@
 import { DashboardItemsModel, AppointmentModel } from "../models";
 import { doctorsList, campaignList, departmentList } from "../datas";
 import moment from "moment";
+import axios from "axios";
 
 export const globalAppointmentDate = moment(new Date())
   .add(7, "days")
@@ -27,15 +28,10 @@ export const globalAppointment: AppointmentModel = {
 export default class DashboardService {
   public static getDashboardItems(): Promise<DashboardItemsModel> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const model: DashboardItemsModel = {
-          appointment: globalAppointment,
-          campaigns: campaignList,
-          doctors: doctorsList,
-          departments: departmentList
-        };
-        resolve(model);
-      }, 100);
+        axios
+          .get('http://www.advancedcareclinics.com/api/home/get-all')
+          .then((response) => resolve(response.data as DashboardItemsModel)
+          , (err) => reject(err));
     });
   }
 }
